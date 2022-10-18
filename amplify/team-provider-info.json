@@ -1,0 +1,23 @@
+{
+  "dev": {
+    "awscloudformation": {
+      "AuthRoleName": "amplify-aiclimatemap-dev-122824-authRole",
+      "UnauthRoleArn": "arn:aws:iam::964526436192:role/amplify-aiclimatemap-dev-122824-unauthRole",
+      "AuthRoleArn": "arn:aws:iam::964526436192:role/amplify-aiclimatemap-dev-122824-authRole",
+      "Region": "us-east-1",
+      "DeploymentBucketName": "amplify-aiclimatemap-dev-122824-deployment",
+      "UnauthRoleName": "amplify-aiclimatemap-dev-122824-unauthRole",
+      "StackName": "amplify-aiclimatemap-dev-122824",
+      "StackId": "arn:aws:cloudformation:us-east-1:964526436192:stack/amplify-aiclimatemap-dev-122824/82e851c0-4ef9-11ed-b678-129696100363",
+      "AmplifyAppId": "dfsq0abjibcfo"
+    },
+    "categories": {
+      "hosting": {
+        "amplifyhosting": {
+          "appId": "dfsq0abjibcfo",
+          "type": "cicd"
+        }
+      }
+    }
+  }
+}
