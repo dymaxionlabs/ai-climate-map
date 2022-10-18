@@ -6,7 +6,7 @@ import { Cartesian3, createWorldTerrain, CesiumTerrainProvider, BingMapsImageryP
 // });
 const bingProvider = new BingMapsImageryProvider({
   url: "https://dev.virtualearth.net",
-  key: process.env.NEXT_PUBLIC_BINGMAPS_KEY
+  key: process.env.REACT_APP_BINGMAPS_KEY
 })
 
 const tegucigalpa = Cartesian3.fromDegrees(-87.1715002, 14.065049, 1000);
