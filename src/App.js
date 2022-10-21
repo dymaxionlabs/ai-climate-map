@@ -1,5 +1,5 @@
-import { Viewer, Entity, PointGraphics, EntityDescription, CameraFlyTo, ImageryLayer, } from "resium";
-import { Cartesian3, createWorldTerrain, CesiumTerrainProvider, BingMapsImageryProvider, ShadowMode } from "cesium";
+import { BingMapsImageryProvider, Cartesian3, CesiumTerrainProvider, ShadowMode } from "cesium";
+import { CameraFlyTo, ImageryLayer, Viewer } from "resium";
 
 const terrainProvider = new CesiumTerrainProvider({
   url: `${process.env.REACT_APP_CESIUMTS_URL}/alos30_honduras`
