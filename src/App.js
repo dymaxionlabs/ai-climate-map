@@ -15,9 +15,9 @@ const tegucigalpa = Cartesian3.fromDegrees(-87.1715002, 14.065049, 15000);
 export default function Cesium() {
   return (
     <Viewer
-      full
       timeline={false}
       animation={false}
+      baseLayerPicker={false}
       shadows
       terrainShadows={ShadowMode.CAST_ONLY}
       terrainProvider={terrainProvider}
