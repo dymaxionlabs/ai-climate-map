@@ -11,8 +11,9 @@ const bingProvider = new BingMapsImageryProvider({
   key: process.env.REACT_APP_BINGMAPS_KEY
 })
 
-const buildTitilerProvider = (cogUrl) => new UrlTemplateImageryProvider({
-  url: `${process.env.REACT_APP_TITILER_URL}/cog/tiles/{z}/{x}/{y}.png?url=${encodeURIComponent(cogUrl)}&colormap_name=ylorrd&resampling_method=bilinear`,
+const cogsUrlPrefix = "s3://aiclimate-raster-cogs"
+const buildTitilerProvider = (cogPath) => new UrlTemplateImageryProvider({
+  url: `${process.env.REACT_APP_TITILER_URL}/cog/tiles/{z}/{x}/{y}.png?url=${encodeURIComponent(cogsUrlPrefix + cogPath)}&colormap_name=ylorrd&resampling_method=bilinear`,
 });
 
 const tegucigalpa = Cartesian3.fromDegrees(-87.1715002, 14.065049, 15000);
@@ -31,7 +32,7 @@ export default function Cesium() {
       <ImageryLayer
         colorToAlpha={new Color(1, 1, 0.7, 1)}
         colorToAlphaThreshold={0.075}
-        imageryProvider={buildTitilerProvider("s3://aiclimate-raster-cogs/l2/tegu/flood_TEGU_low_moderado_smooth_160_30_clipbythr10.tif")}
+        imageryProvider={buildTitilerProvider("/l2/tegu/flood_TEGU_low_moderado_smooth_160_30_clipbythr10.tif")}
       />
       <CameraFlyTo destination={tegucigalpa} />
     </Viewer>
