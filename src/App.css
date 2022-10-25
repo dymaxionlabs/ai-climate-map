@@ -2,11 +2,19 @@
   position: absolute;
   top: 20px;
   left: 20px;
-  width: 200px;
+  width: 300px;
   border-radius: 10px;
   border: #444;
   background-color: rgba(38, 38, 38, 0.75);
   color: #fff;
   font-family: sans-serif;
   font-size: 16px;
+  padding: 12px;
+}
+
+.location-selector select {
+  margin-top: 12px;
+  font-size: 16px;
+  padding: 5px;
+  width: 100%;
 }
