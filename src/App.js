@@ -1,27 +1,11 @@
-import { Color, BingMapsImageryProvider, UrlTemplateImageryProvider, Cartesian3, CesiumTerrainProvider, ShadowMode } from "cesium";
+import { Color, BingMapsImageryProvider, UrlTemplateImageryProvider, CesiumTerrainProvider, ShadowMode } from "cesium";
 import { CameraFlyTo, ImageryLayer, Viewer } from "resium";
-import { useState } from 'react'
+import { useState, useMemo } from 'react'
 import LocationSelector from './components/LocationSelector'
+import LayerSelector from './components/LayerSelector'
 import './App.css';
 
-const locations = [
-  {
-    name: "Tegucigalpa, Honduras",
-    // center: Cartesian3.fromDegrees(-87.1715002, 14.065049, 15000),
-    center: Cartesian3.fromDegrees(-87.2399923, 14.0839129, 15000),
-    layers: [
-      { path: "/l2/tegu/flood_TEGU_low_moderado_smooth_160_30_clipbythr10.tif" }
-    ],
-  },
-  {
-    name: "Valle de Sula, Honduras",
-    center: Cartesian3.fromDegrees(-87.9242207, 15.4516219, 15000),
-    layers: [
-
-    ],
-  },
-]
-
+import { locations as allLocations } from './data'
 
 const terrainTilesetName = "alos30_honduras";
 const terrainProvider = new CesiumTerrainProvider({
@@ -39,7 +23,30 @@ const buildTitilerProvider = (cogPath) => new UrlTemplateImageryProvider({
 });
 
 export default function Cesium() {
-  const [currentLocation, setCurrentLocation] = useState(locations[0]);
+  const [currentLocation, setCurrentLocation] = useState(allLocations[0]);
+  const [activeByLayer, setActiveByLayer] = useState({})
+  const [opacityByLayer, setOpacityByLayer] = useState({})
+
+  const layerProviders = useMemo(() =>
+    currentLocation.layers.map(layer => buildTitilerProvider(layer.path)), [currentLocation])
+
+  const layers = useMemo(() => {
+    const newLayers = currentLocation.layers.map((layer, i) => ({
+      ...layer,
+      active: activeByLayer[i] || false,
+      opacity: opacityByLayer[i] || 100,
+      provider: layerProviders[i]
+    }))
+    return newLayers
+  }, [currentLocation, layerProviders, activeByLayer, opacityByLayer])
+
+  const handleLayerToggle = (i, value) => {
+    setActiveByLayer({ ...activeByLayer, [i]: value })
+  }
+
+  const handleLayerOpacityChange = (i, value) => {
+    setOpacityByLayer({ ...opacityByLayer, [i]: value })
+  }
 
   return (
     <Viewer
@@ -50,13 +57,26 @@ export default function Cesium() {
       terrainShadows={ShadowMode.CAST_ONLY}
       terrainProvider={terrainProvider}
     >
-      <LocationSelector items={locations} onChange={i => setCurrentLocation(locations[i])} />
-      {/* <ImageryLayer imageryProvider={bingProvider} />
-      <ImageryLayer
-        colorToAlpha={new Color(1, 1, 0.7, 1)}
-        colorToAlphaThreshold={0.075}
-        imageryProvider={buildTitilerProvider(locations[0].layers[0].path)}
-      /> */}
+      <LocationSelector
+        items={allLocations}
+        onChange={i => setCurrentLocation(allLocations[i])}
+      />
+      {layers && layers.length > 0 && <LayerSelector
+        items={layers}
+        onToggle={handleLayerToggle}
+        onOpacityChange={handleLayerOpacityChange}
+      />}
+      <ImageryLayer imageryProvider={bingProvider} />
+      {layers && layers.map(layer => (
+        <ImageryLayer
+          key={layer.path}
+          colorToAlpha={new Color(1, 1, 0.7, 1)}
+          colorToAlphaThreshold={0.075}
+          show={layer.active}
+          alpha={layer.opacity / 100.0}
+          imageryProvider={layer.provider}
+        />
+      ))}
       <CameraFlyTo destination={currentLocation.center} />
     </Viewer>
   )
