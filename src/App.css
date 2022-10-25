@@ -1,8 +1,8 @@
 .location-selector {
   position: absolute;
-  top: 20px;
-  left: 20px;
-  width: 300px;
+  top: 10px;
+  left: 10px;
+  width: 220px;
   border-radius: 10px;
   border: #444;
   background-color: rgba(38, 38, 38, 0.75);

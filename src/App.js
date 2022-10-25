@@ -1,6 +1,7 @@
 import { Color, BingMapsImageryProvider, UrlTemplateImageryProvider, Cartesian3, CesiumTerrainProvider, ShadowMode } from "cesium";
 import { CameraFlyTo, ImageryLayer, Viewer } from "resium";
 import { useState } from 'react'
+import LocationSelector from './components/LocationSelector'
 import './App.css';
 
 const locations = [
@@ -36,19 +37,6 @@ const cogsUrlPrefix = "s3://aiclimate-raster-cogs"
 const buildTitilerProvider = (cogPath) => new UrlTemplateImageryProvider({
   url: `${process.env.REACT_APP_TITILER_URL}/cog/tiles/{z}/{x}/{y}.png?url=${encodeURIComponent(cogsUrlPrefix + cogPath)}&colormap_name=ylorrd&resampling_method=bilinear`,
 });
-
-const LocationSelector = ({ items, value, onChange }) => (
-  <div className="location-selector">
-    <span>
-      Select a known location to explore:
-    </span>
-    <select onChange={(e) => onChange(e.target.value)}>
-      {items.map((item, i) => (
-        <option key={i} value={i} selected={value === i}>{item.name}</option>
-      ))}
-    </select>
-  </div>
-)
 
 export default function Cesium() {
   const [currentLocation, setCurrentLocation] = useState(locations[0]);
