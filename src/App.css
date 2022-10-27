@@ -36,8 +36,11 @@
   width: 100%;
 }
 
-.layer-selector {}
+.layer-selector {
+}
 
-.layer-selector .name {}
+.layer-selector .name {
+}
 
-.layer-selector .opacity-slider {}
+.layer-selector .opacity-slider {
+}

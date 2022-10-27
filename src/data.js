@@ -1,4 +1,4 @@
-import { Cartesian3 } from "cesium"
+import { Cartesian3 } from "cesium";
 
 export const locations = [
   {
@@ -19,8 +19,6 @@ export const locations = [
   {
     name: "Valle de Sula, Honduras",
     center: Cartesian3.fromDegrees(-87.9242207, 15.4516219, 15000),
-    layers: [
-
-    ],
+    layers: [],
   },
-]
+];
