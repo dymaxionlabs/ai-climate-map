@@ -1,3 +1,8 @@
+#root > div {
+  overflow: hidden;
+  height: 100vh;
+}
+
 .map-control {
   position: absolute;
   border-radius: 10px;
@@ -19,6 +24,10 @@
 
 .map-control.bottom {
   bottom: 10px;
+}
+
+.map-control.left.bottom {
+  bottom: 40px;
 }
 
 .map-control.right {

@@ -1,17 +1,23 @@
 import {
   Color,
   BingMapsImageryProvider,
+  OpenStreetMapImageryProvider,
   UrlTemplateImageryProvider,
   CesiumTerrainProvider,
   ShadowMode,
+  Ion,
 } from "cesium";
 import { CameraFlyTo, ImageryLayer, Viewer } from "resium";
-import { useState, useMemo } from "react";
+import { useState, useMemo, useEffect } from "react";
 import LocationSelector from "./components/LocationSelector";
 import LayerSelector from "./components/LayerSelector";
 import "./App.css";
 
-import { locations as allLocations } from "./data";
+import { locations } from "./data";
+
+if (process.env.REACT_APP_CESIUMION_TOKEN) {
+  Ion.defaultAccessToken = process.env.REACT_APP_CESIUMION_TOKEN;
+}
 
 const terrainTilesetName = "alos30_honduras";
 const terrainProvider = new CesiumTerrainProvider({
@@ -22,6 +28,15 @@ const bingProvider = new BingMapsImageryProvider({
   url: "https://dev.virtualearth.net",
   key: process.env.REACT_APP_BINGMAPS_KEY,
 });
+
+const osmProvider = new OpenStreetMapImageryProvider({
+  url: "https://a.tile.openstreetmap.org/",
+});
+
+const basemaps = [
+  { name: "Bing Maps", provider: bingProvider },
+  { name: "OpenStreetMap", provider: osmProvider },
+];
 
 const cogsUrlPrefix = "s3://aiclimate-raster-cogs";
 const buildTitilerProvider = (cogPath) =>
@@ -34,39 +49,51 @@ const buildTitilerProvider = (cogPath) =>
   });
 
 export default function Cesium() {
-  const [currentLocation, setCurrentLocation] = useState(allLocations[0]);
+  const [basemapId, setBasemapId] = useState(0);
+  const [locationId, setLocationId] = useState(0);
   const [activeByLayer, setActiveByLayer] = useState({});
   const [opacityByLayer, setOpacityByLayer] = useState({});
 
+  const location = useMemo(() => locations[locationId], [locationId]);
+
   const layerProviders = useMemo(
-    () =>
-      currentLocation.layers.map((layer) => buildTitilerProvider(layer.path)),
-    [currentLocation]
+    () => location.layers.map((layer) => buildTitilerProvider(layer.path)),
+    [location]
   );
 
   const layers = useMemo(() => {
-    const newLayers = currentLocation.layers.map((layer, i) => ({
+    const newLayers = location.layers.map((layer, i) => ({
       ...layer,
       id: i,
       active: activeByLayer[i] || false,
       opacity: opacityByLayer[i] || 100,
       provider: layerProviders[i],
     }));
-    console.log("Layers", newLayers);
+    // console.log("Layers", newLayers);
     return newLayers;
-  }, [currentLocation, layerProviders, activeByLayer, opacityByLayer]);
+  }, [location, layerProviders, activeByLayer, opacityByLayer]);
+
+  const reversedLayers = useMemo(() => [...layers].reverse(), [layers]);
 
   const groups = useMemo(() => {
-    const { groups } = currentLocation;
+    const { groups } = location;
     const newGroups = groups.map((group) => ({
       ...group,
       layers: layers.filter((layer) => layer.group === group.id),
     }));
-    console.log("Groups:", newGroups);
+    // console.log("Groups:", newGroups);
     return newGroups;
-  }, [currentLocation, layers]);
+  }, [location, layers]);
+
+  const handleLocationChange = (i) => setLocationId(Number(i));
+
+  const handleBasemapChange = (i) => {
+    // console.log("basemap", i);
+    setBasemapId(Number(i));
+  };
 
   const handleLayerToggle = (id, value) => {
+    // console.log("toggle", id, value);
     setActiveByLayer({ ...activeByLayer, [id]: value });
   };
 
@@ -79,24 +106,39 @@ export default function Cesium() {
       timeline={false}
       animation={false}
       baseLayerPicker={false}
+      imageryProvider={false}
       shadows
       terrainShadows={ShadowMode.CAST_ONLY}
       terrainProvider={terrainProvider}
     >
+      {/* Controls */}
       <LocationSelector
-        items={allLocations}
-        onChange={(i) => setCurrentLocation(allLocations[i])}
+        items={locations}
+        value={locationId}
+        onChange={handleLocationChange}
       />
       {groups && groups.length > 0 && (
         <LayerSelector
           groups={groups}
+          basemaps={basemaps}
+          basemap={basemapId}
           onToggle={handleLayerToggle}
           onOpacityChange={handleLayerOpacityChange}
+          onBasemapChange={handleBasemapChange}
         />
       )}
-      <ImageryLayer imageryProvider={bingProvider} />
-      {layers &&
-        layers.map((layer) => (
+      {/* Basemap */}
+      {basemaps &&
+        basemaps.map((basemap, i) => (
+          <ImageryLayer
+            key={`basemap-${i}`}
+            imageryProvider={basemap.provider}
+            show={basemapId === i}
+          />
+        ))}
+      {/* Layers */}
+      {reversedLayers &&
+        reversedLayers.map((layer) => (
           <ImageryLayer
             key={layer.path}
             colorToAlpha={new Color(1, 1, 0.7, 1)}
@@ -106,7 +148,7 @@ export default function Cesium() {
             imageryProvider={layer.provider}
           />
         ))}
-      <CameraFlyTo destination={currentLocation.center} />
+      <CameraFlyTo destination={location.center} />
     </Viewer>
   );
 }

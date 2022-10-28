@@ -15,7 +15,7 @@ const LayerItem = ({
         className="active"
         type="checkbox"
         value={active}
-        onChange={(e) => onToggle(id, e.target.value !== "on")}
+        onChange={(e) => onToggle(id, e.target.value !== "true")}
       />
       <label htmlFor={`layer-${id}`} className="name">
         {name}
@@ -32,8 +32,32 @@ const LayerItem = ({
   );
 };
 
-const LayerSelector = ({ groups, onToggle, onOpacityChange }) => (
+const BasemapSelect = ({ items, value, onChange }) => (
+  <select onChange={(e) => onChange(e.target.value)} value={value}>
+    {items.map((item, i) => (
+      <option key={i} value={i}>
+        {item.name}
+      </option>
+    ))}
+  </select>
+);
+
+const LayerSelector = ({
+  groups,
+  basemaps,
+  basemap,
+  onToggle,
+  onOpacityChange,
+  onBasemapChange,
+}) => (
   <MapControl className="layer-selector" left bottom>
+    {basemaps && (
+      <BasemapSelect
+        items={basemaps}
+        value={basemap}
+        onChange={onBasemapChange}
+      />
+    )}
     <ul>
       {groups.map((group) => (
         <li key={group.id}>
