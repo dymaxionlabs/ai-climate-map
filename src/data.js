@@ -29,7 +29,7 @@ export const locations = [
     id: "sula",
     name: "Valle de Sula, Honduras",
     center: Cartesian3.fromDegrees(-87.9242207, 15.4516219, 15000),
-    categories: [],
+    groups: [],
     layers: [],
   },
 ];
