@@ -47,19 +47,31 @@ export default function Cesium() {
   const layers = useMemo(() => {
     const newLayers = currentLocation.layers.map((layer, i) => ({
       ...layer,
+      id: i,
       active: activeByLayer[i] || false,
       opacity: opacityByLayer[i] || 100,
       provider: layerProviders[i],
     }));
+    console.log("Layers", newLayers);
     return newLayers;
   }, [currentLocation, layerProviders, activeByLayer, opacityByLayer]);
 
-  const handleLayerToggle = (i, value) => {
-    setActiveByLayer({ ...activeByLayer, [i]: value });
+  const groups = useMemo(() => {
+    const { groups } = currentLocation;
+    const newGroups = groups.map((group) => ({
+      ...group,
+      layers: layers.filter((layer) => layer.group === group.id),
+    }));
+    console.log("Groups:", newGroups);
+    return newGroups;
+  }, [currentLocation, layers]);
+
+  const handleLayerToggle = (id, value) => {
+    setActiveByLayer({ ...activeByLayer, [id]: value });
   };
 
-  const handleLayerOpacityChange = (i, value) => {
-    setOpacityByLayer({ ...opacityByLayer, [i]: value });
+  const handleLayerOpacityChange = (id, value) => {
+    setOpacityByLayer({ ...opacityByLayer, [id]: value });
   };
 
   return (
@@ -75,9 +87,9 @@ export default function Cesium() {
         items={allLocations}
         onChange={(i) => setCurrentLocation(allLocations[i])}
       />
-      {layers && layers.length > 0 && (
+      {groups && groups.length > 0 && (
         <LayerSelector
-          items={layers}
+          groups={groups}
           onToggle={handleLayerToggle}
           onOpacityChange={handleLayerOpacityChange}
         />

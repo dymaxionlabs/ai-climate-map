@@ -1,9 +1,7 @@
-import classNames from "classnames";
+import MapControl from "./MapControl";
 
 const LocationSelector = ({ items, value, onChange }) => (
-  <div
-    className={classNames("cesium-control", "top", "left", "location-selector")}
-  >
+  <MapControl className="location-selector" top left>
     <span>Select a known location to explore:</span>
     <select onChange={(e) => onChange(e.target.value)} value={value}>
       {items.map((item, i) => (
@@ -12,7 +10,7 @@ const LocationSelector = ({ items, value, onChange }) => (
         </option>
       ))}
     </select>
-  </div>
+  </MapControl>
 );
 
 export default LocationSelector;

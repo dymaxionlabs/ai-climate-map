@@ -1,4 +1,4 @@
-.cesium-control {
+.map-control {
   position: absolute;
   border-radius: 10px;
   border: #444;
@@ -9,19 +9,19 @@
   padding: 12px;
 }
 
-.cesium-control.top {
+.map-control.top {
   top: 10px;
 }
 
-.cesium-control.left {
+.map-control.left {
   left: 10px;
 }
 
-.cesium-control.bottom {
+.map-control.bottom {
   bottom: 10px;
 }
 
-.cesium-control.right {
+.map-control.right {
   right: 10px;
 }
 
@@ -40,7 +40,10 @@
 }
 
 .layer-selector .name {
+  display: inline-block;
+  width: 6em;
 }
 
 .layer-selector .opacity-slider {
+  width: 5em;
 }

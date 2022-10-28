@@ -1,43 +1,51 @@
-import classNames from "classnames";
+import MapControl from "./MapControl";
 
-const LayerItem = (id, name, active, opacity, onToggle, onOpacityChange) => (
-  <>
-    <input
-      id={`layer-${id}`}
-      className="active"
-      type="checkbox"
-      value={active}
-      onChange={(e) => onToggle(id, e.target.value !== "on")}
-    />
-    <label htmlFor={`layer-${id}`} className="name">
-      {name}
-    </label>
-    <input
-      className="opacity-slider"
-      type="range"
-      min="0"
-      max="100"
-      onChange={(e) => onOpacityChange(id, e.target.value)}
-      value={opacity}
-    />
-  </>
-);
+const LayerItem = ({
+  id,
+  name,
+  active,
+  opacity,
+  onToggle,
+  onOpacityChange,
+}) => {
+  return (
+    <div>
+      <input
+        id={`layer-${id}`}
+        className="active"
+        type="checkbox"
+        value={active}
+        onChange={(e) => onToggle(id, e.target.value !== "on")}
+      />
+      <label htmlFor={`layer-${id}`} className="name">
+        {name}
+      </label>
+      <input
+        className="opacity-slider"
+        type="range"
+        min="0"
+        max="100"
+        onChange={(e) => onOpacityChange(id, e.target.value)}
+        value={opacity}
+      />
+    </div>
+  );
+};
 
 const LayerSelector = ({ groups, onToggle, onOpacityChange }) => (
-  <div
-    className={classNames("cesium-control", "bottom", "left", "layer-selector")}
-  >
+  <MapControl className="layer-selector" left bottom>
     <ul>
-      {groups.map((group, i) => (
-        <li key={i}>
+      {groups.map((group) => (
+        <li key={group.id}>
+          <span>{group.name}</span>
           <ul>
-            {group.map((item, j) => (
-              <li>
+            {group.layers.map((layer) => (
+              <li key={layer.id}>
                 <LayerItem
-                  id={i}
-                  name={item.name}
-                  active={item.active}
-                  opacity={item.opacity}
+                  id={layer.id}
+                  name={layer.name}
+                  active={layer.active}
+                  opacity={layer.opacity}
                   onToggle={onToggle}
                   onOpacityChange={onOpacityChange}
                 />
@@ -47,7 +55,7 @@ const LayerSelector = ({ groups, onToggle, onOpacityChange }) => (
         </li>
       ))}
     </ul>
-  </div>
+  </MapControl>
 );
 
 export default LayerSelector;
