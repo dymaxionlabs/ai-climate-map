@@ -43,6 +43,7 @@ const BasemapSelect = ({ items, value, onChange }) => (
 );
 
 const LayerSelector = ({
+  locationId,
   groups,
   basemaps,
   basemap,
@@ -60,11 +61,11 @@ const LayerSelector = ({
     )}
     <ul>
       {groups.map((group) => (
-        <li key={group.id}>
+        <li key={`${locationId}-${group.id}`}>
           <span>{group.name}</span>
           <ul>
             {group.layers.map((layer) => (
-              <li key={layer.id}>
+              <li key={`${locationId}-${layer.id}`}>
                 <LayerItem
                   id={layer.id}
                   name={layer.name}

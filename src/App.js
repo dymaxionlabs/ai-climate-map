@@ -62,16 +62,22 @@ export default function Cesium() {
   );
 
   const layers = useMemo(() => {
-    const newLayers = location.layers.map((layer, i) => ({
-      ...layer,
-      id: i,
-      active: activeByLayer[i] || false,
-      opacity: opacityByLayer[i] || 100,
-      provider: layerProviders[i],
-    }));
+    const newLayers = location.layers.map((layer, i) => {
+      const _id = `${locationId}-${i}`;
+      console.log("layers:", _id);
+      return {
+        ...layer,
+        id: i,
+        active: activeByLayer[_id] || false,
+        opacity: opacityByLayer[_id] || 100,
+        provider: layerProviders[i],
+      };
+    });
     // console.log("Layers", newLayers);
     return newLayers;
-  }, [location, layerProviders, activeByLayer, opacityByLayer]);
+  }, [location, locationId, layerProviders, activeByLayer, opacityByLayer]);
+
+  // useEffect(() => console.log("activeByLayer", activeByLayer), [activeByLayer]);
 
   const reversedLayers = useMemo(() => [...layers].reverse(), [layers]);
 
@@ -81,7 +87,7 @@ export default function Cesium() {
       ...group,
       layers: layers.filter((layer) => layer.group === group.id),
     }));
-    // console.log("Groups:", newGroups);
+    console.log("Groups:", newGroups);
     return newGroups;
   }, [location, layers]);
 
@@ -94,11 +100,11 @@ export default function Cesium() {
 
   const handleLayerToggle = (id, value) => {
     // console.log("toggle", id, value);
-    setActiveByLayer({ ...activeByLayer, [id]: value });
+    setActiveByLayer({ ...activeByLayer, [`${locationId}-${id}`]: value });
   };
 
   const handleLayerOpacityChange = (id, value) => {
-    setOpacityByLayer({ ...opacityByLayer, [id]: value });
+    setOpacityByLayer({ ...opacityByLayer, [`${locationId}-${id}`]: value });
   };
 
   return (
@@ -119,6 +125,7 @@ export default function Cesium() {
       />
       {groups && groups.length > 0 && (
         <LayerSelector
+          locationId={locationId}
           groups={groups}
           basemaps={basemaps}
           basemap={basemapId}
@@ -141,7 +148,7 @@ export default function Cesium() {
         reversedLayers.map((layer) => (
           <ImageryLayer
             key={layer.path}
-            colorToAlpha={new Color(1, 1, 0.7, 1)}
+            colorToAlpha={new Color(1, 1, 0.8, 1)}
             colorToAlphaThreshold={0.075}
             show={layer.active}
             alpha={layer.opacity / 100.0}

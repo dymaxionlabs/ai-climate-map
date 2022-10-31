@@ -16,12 +16,12 @@ export const locations = [
       {
         group: "l2",
         name: "Global",
-        path: "/l2/tegu/flood_TEGU_low_moderado_smooth_160_30_clipbythr10.tif",
+        path: "/l2/tegu/l2_tegu_global.tif",
       },
       {
         group: "l2",
         name: "Local",
-        path: "/l2/tegu/results_floods_TEGU_planet_160_40_thr5.tif",
+        path: "/l2/tegu/l2_tegu_local.tif",
       },
     ],
   },
@@ -29,7 +29,33 @@ export const locations = [
     id: "sula",
     name: "Valle de Sula, Honduras",
     center: Cartesian3.fromDegrees(-87.9242207, 15.4516219, 15000),
-    groups: [],
-    layers: [],
+    groups: [
+      { id: "l1", name: "Level 1: Informal Settlements" },
+      { id: "l2", name: "Level 2: Flooded Areas" },
+      { id: "l3", name: "Level 3: Landslides" },
+      { id: "l4", name: "Level 4: Land use" },
+    ],
+    layers: [
+      {
+        group: "l2",
+        name: "Global - Extremo",
+        path: "/l2/sula/l2_sula_global_extremo.tif",
+      },
+      {
+        group: "l2",
+        name: "Global - Moderado",
+        path: "/l2/sula/l2_sula_global_moderado.tif",
+      },
+      {
+        group: "l2",
+        name: "Local - Extremo",
+        path: "/l2/sula/l2_sula_local_extremo.tif",
+      },
+      {
+        group: "l2",
+        name: "Local - Moderado",
+        path: "/l2/sula/l2_sula_local_moderado.tif",
+      },
+    ],
   },
 ];
