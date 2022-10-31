@@ -23,6 +23,16 @@ export const locations = [
         name: "Local",
         path: "/l2/tegu/l2_tegu_local.tif",
       },
+      {
+        group: "l3",
+        name: "Global",
+        path: "/l3/tegu/l3_tegu_global.tif",
+      },
+      {
+        group: "l3",
+        name: "Local",
+        path: "/l3/tegu/l3_tegu_local.tif",
+      },
     ],
   },
   {
@@ -55,6 +65,16 @@ export const locations = [
         group: "l2",
         name: "Local - Moderado",
         path: "/l2/sula/l2_sula_local_moderado.tif",
+      },
+      {
+        group: "l3",
+        name: "Global",
+        path: "/l3/sula/l3_sula_global.tif",
+      },
+      {
+        group: "l3",
+        name: "Local",
+        path: "/l3/sula/l3_sula_local.tif",
       },
     ],
   },
