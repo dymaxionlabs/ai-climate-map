@@ -2,6 +2,7 @@
 
 AI Climate map viewer
 
+
 ## Development
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
@@ -73,6 +74,7 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
 
+
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at the [issues
@@ -80,6 +82,7 @@ page](https://github.com/dymaxionlabs/ai-climate-map). This project is intended
 to be a safe, welcoming space for collaboration, and contributors are expected
 to adhere to the [Contributor Covenant](http://contributor-covenant.org) code
 of conduct.
+
 
 ## License
 
