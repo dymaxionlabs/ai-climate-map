@@ -55,6 +55,7 @@ export default function Cesium() {
   const [locationId, setLocationId] = useState(0);
   const [activeByLayer, setActiveByLayer] = useState({});
   const [opacityByLayer, setOpacityByLayer] = useState({});
+  const [flyToActivated, setFlyToActivated] = useState(true);
 
   const location = useMemo(() => locations[locationId], [locationId]);
 
@@ -83,6 +84,15 @@ export default function Cesium() {
   }, [location, locationId, layerProviders, activeByLayer, opacityByLayer]);
 
   // useEffect(() => console.log("activeByLayer", activeByLayer), [activeByLayer]);
+
+  // Workaround: If location changes, activate fly-to and set a timeout to disable it.
+  // This will trigger a flyTo call on the Cesium map.
+  useEffect(() => setFlyToActivated(true), [locationId]);
+  useEffect(() => {
+    if (flyToActivated) {
+      setTimeout(() => setFlyToActivated(false), 100);
+    }
+  }, [flyToActivated]);
 
   const reversedLayers = useMemo(() => [...layers].reverse(), [layers]);
 
@@ -160,7 +170,7 @@ export default function Cesium() {
             imageryProvider={layer.provider}
           />
         ))}
-      <CameraFlyTo destination={location.center} />
+      {flyToActivated && <CameraFlyTo destination={location.center} />}
     </Viewer>
   );
 }
