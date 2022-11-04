@@ -150,14 +150,17 @@ export default function Cesium() {
         />
       )}
       {/* Basemap */}
+      {basemaps && <ImageryLayer imageryProvider={basemaps[0].provider} />}
       {basemaps &&
-        basemaps.map((basemap, i) => (
-          <ImageryLayer
-            key={`basemap-${i}`}
-            imageryProvider={basemap.provider}
-            show={basemapId === i}
-          />
-        ))}
+        basemaps
+          .slice(1)
+          .map((basemap, i) => (
+            <ImageryLayer
+              key={`basemap-${i}`}
+              imageryProvider={basemap.provider}
+              show={basemapId === i + 1}
+            />
+          ))}
       {/* Layers */}
       {reversedLayers &&
         reversedLayers.map((layer) => (
