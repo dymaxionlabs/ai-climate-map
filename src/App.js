@@ -39,14 +39,16 @@ const basemaps = [
 ];
 
 const cogsUrlPrefix = "s3://aiclimate-raster-cogs";
-const buildTitilerProvider = (cogPath) =>
-  new UrlTemplateImageryProvider({
+const buildTitilerProvider = (cogPath, cmap) => {
+  const cmapParam = cmap ? `&colormap_name=${cmap}` : "";
+  return new UrlTemplateImageryProvider({
     url: `${
       process.env.REACT_APP_TITILER_URL
     }/cog/tiles/{z}/{x}/{y}.png?url=${encodeURIComponent(
       cogsUrlPrefix + cogPath
-    )}&colormap_name=ylorrd&resampling_method=bilinear`,
+    )}${cmapParam}&resampling_method=bilinear`,
   });
+};
 
 export default function Cesium() {
   const [basemapId, setBasemapId] = useState(0);
@@ -57,7 +59,10 @@ export default function Cesium() {
   const location = useMemo(() => locations[locationId], [locationId]);
 
   const layerProviders = useMemo(
-    () => location.layers.map((layer) => buildTitilerProvider(layer.path)),
+    () =>
+      location.layers.map((layer) =>
+        buildTitilerProvider(layer.path, layer.cmap)
+      ),
     [location]
   );
 
