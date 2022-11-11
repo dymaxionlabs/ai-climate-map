@@ -1,7 +1,10 @@
 {
   "name": "ai-climate-map",
-  "private": true,
-  "version": "0.0.0",
+  "description": "AI Climate map viewer",
+  "version": "0.1.0",
+  "repository": "https://github.com/dymaxionlabs/ai-climate-map",
+  "author": "Damián Silvani <munshkr@gmail.com>",
+  "license": "Apache-2.0",
   "type": "module",
   "scripts": {
     "dev": "vite",
