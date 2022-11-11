@@ -15,26 +15,26 @@ export const locations = [
     layers: [
       {
         group: "l2",
-        name: "Global",
-        path: "/l2/tegu/l2_tegu_global.tif",
-        cmap: "blues",
-      },
-      {
-        group: "l2",
         name: "Local",
         path: "/l2/tegu/l2_tegu_local.tif",
         cmap: "blues",
       },
       {
-        group: "l3",
+        group: "l2",
         name: "Global",
-        path: "/l3/tegu/l3_tegu_global.tif",
-        cmap: "reds",
+        path: "/l2/tegu/l2_tegu_global.tif",
+        cmap: "blues",
       },
       {
         group: "l3",
         name: "Local",
         path: "/l3/tegu/l3_tegu_local.tif",
+        cmap: "reds",
+      },
+      {
+        group: "l3",
+        name: "Global",
+        path: "/l3/tegu/l3_tegu_global.tif",
         cmap: "reds",
       },
     ],
@@ -52,18 +52,6 @@ export const locations = [
     layers: [
       {
         group: "l2",
-        name: "Global - Extremo",
-        path: "/l2/sula/l2_sula_global_extremo.tif",
-        cmap: "blues",
-      },
-      {
-        group: "l2",
-        name: "Global - Moderado",
-        path: "/l2/sula/l2_sula_global_moderado.tif",
-        cmap: "blues",
-      },
-      {
-        group: "l2",
         name: "Local - Extremo",
         path: "/l2/sula/l2_sula_local_extremo.tif",
         cmap: "blues",
@@ -75,15 +63,27 @@ export const locations = [
         cmap: "blues",
       },
       {
-        group: "l3",
-        name: "Global",
-        path: "/l3/sula/l3_sula_global.tif",
-        cmap: "reds",
+        group: "l2",
+        name: "Global - Extremo",
+        path: "/l2/sula/l2_sula_global_extremo.tif",
+        cmap: "blues",
+      },
+      {
+        group: "l2",
+        name: "Global - Moderado",
+        path: "/l2/sula/l2_sula_global_moderado.tif",
+        cmap: "blues",
       },
       {
         group: "l3",
         name: "Local",
         path: "/l3/sula/l3_sula_local.tif",
+        cmap: "reds",
+      },
+      {
+        group: "l3",
+        name: "Global",
+        path: "/l3/sula/l3_sula_global.tif",
         cmap: "reds",
       },
     ],
