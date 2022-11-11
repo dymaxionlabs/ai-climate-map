@@ -1,0 +1,24 @@
+{
+  "name": "ai-climate-map",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "cesium": "^1.99.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "resium": "^1.15.1"
+  },
+  "devDependencies": {
+    "@types/react": "^18.0.24",
+    "@types/react-dom": "^18.0.8",
+    "@vitejs/plugin-react": "^2.2.0",
+    "vite": "^3.2.3",
+    "vite-plugin-cesium": "^1.2.22"
+  }
+}
