@@ -7,7 +7,7 @@ import {
   ShadowMode,
   Ion,
 } from "cesium";
-import { CameraFlyTo, ImageryLayer, Viewer, GeoJsonDataSource } from "resium";
+import { CameraFlyTo, ImageryLayer, Viewer } from "resium";
 import { useState, useMemo, useEffect } from "react";
 import LocationSelector from "./components/LocationSelector";
 import LayerSelector from "./components/LayerSelector";
@@ -48,23 +48,6 @@ const buildTitilerProvider = (cogPath, cmap) => {
       cogsUrlPrefix + cogPath
     )}${cmapParam}&resampling_method=bilinear`,
   });
-};
-
-const polygonData = {
-  type: "Feature",
-  properties: {},
-  geometry: {
-    type: "Polygon",
-    coordinates: [
-      [
-        [-87.219498141941386, 14.087331012240163],
-        [-87.219498141941386, 14.101579629976898],
-        [-87.205249524204646, 14.101579629976898],
-        [-87.205249524204646, 14.087331012240163],
-        [-87.219498141941386, 14.087331012240163],
-      ],
-    ],
-  },
 };
 
 function App() {
@@ -190,7 +173,6 @@ function App() {
             imageryProvider={layer.provider}
           />
         ))}
-      <GeoJsonDataSource data={polygonData} clampToGround />
       {flyToActivated && <CameraFlyTo destination={location.center} />}
     </Viewer>
   );
