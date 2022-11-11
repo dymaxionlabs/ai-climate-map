@@ -5,9 +5,11 @@ import {
   UrlTemplateImageryProvider,
   CesiumTerrainProvider,
   ShadowMode,
+  GeoJsonDataSource,
   Ion,
+  EasingFunction,
 } from "cesium";
-import { CameraFlyTo, ImageryLayer, Viewer } from "resium";
+import { CameraFlyTo, ImageryLayer, Viewer, Cesium3DTileset } from "resium";
 import { useState, useMemo, useEffect } from "react";
 import LocationSelector from "./components/LocationSelector";
 import LayerSelector from "./components/LayerSelector";
@@ -50,6 +52,23 @@ const buildTitilerProvider = (cogPath, cmap) => {
   });
 };
 
+const testPolygonData = {
+  type: "Feature",
+  properties: {},
+  geometry: {
+    type: "Polygon",
+    coordinates: [
+      [
+        [-87.219498141941386, 14.087331012240163],
+        [-87.219498141941386, 14.101579629976898],
+        [-87.205249524204646, 14.101579629976898],
+        [-87.205249524204646, 14.087331012240163],
+        [-87.219498141941386, 14.087331012240163],
+      ],
+    ],
+  },
+};
+
 export default function Cesium() {
   const [basemapId, setBasemapId] = useState(0);
   const [locationId, setLocationId] = useState(0);
@@ -70,7 +89,7 @@ export default function Cesium() {
   const layers = useMemo(() => {
     const newLayers = location.layers.map((layer, i) => {
       const _id = `${locationId}-${i}`;
-      console.log("layers:", _id);
+      // console.log("layers:", _id);
       return {
         ...layer,
         id: i,
@@ -102,7 +121,7 @@ export default function Cesium() {
       ...group,
       layers: layers.filter((layer) => layer.group === group.id),
     }));
-    console.log("Groups:", newGroups);
+    // console.log("Groups:", newGroups);
     return newGroups;
   }, [location, layers]);
 
@@ -173,7 +192,44 @@ export default function Cesium() {
             imageryProvider={layer.provider}
           />
         ))}
-      {flyToActivated && <CameraFlyTo destination={location.center} />}
+      <GeoJsonDataSource
+        data={testPolygonData}
+        markerColor={Color.RED}
+        fill={Color.PINK}
+        stroke={Color.HOTPINK}
+        strokeWidth={3}
+      />
+      {/* <Cesium3DTileset
+        show
+        debugShowBoundingVolume
+        showOutline
+        outlineColor={new Color(1, 0, 0, 1)}
+        enableDebugWireframe
+        debugWireframe
+        debugShowRenderingStatistics
+        // style
+        url="/3dtiles/test_tegu/tileset.json"
+        onAllTilesLoad={() => console.log("3dtiles", "AllTilesLoad")}
+        onInitialTilesLoad={() => console.log("3dtiles", "InitialTilesLoad")}
+        onLoadProgress={(numberOfPendingRequests, numberOfTilesProcessing) =>
+          console.log(
+            "3dtiles",
+            "LoadProgress",
+            numberOfPendingRequests,
+            numberOfTilesProcessing
+          )
+        }
+        onTileFailed={(err) => console.error("3dtiles", "TileFailed", err)}
+        onTileLoad={(tile) => console.log("3dtiles", "TileLoad", tile)}
+        onTileUnload={() => console.log("3dtiles", "TileUnload")}
+        onTileVisible={(tile) => console.log("3dtiles", "TileVisible", tile)}
+      /> */}
+      {flyToActivated && (
+        <CameraFlyTo
+          destination={location.center}
+          easingFunction={EasingFunction.QUINTIC_IN_OUT}
+        />
+      )}
     </Viewer>
   );
 }
