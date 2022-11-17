@@ -7,34 +7,19 @@ AI Climate map viewer
 
 This project was bootstrapped with [Vite](https://vitejs.dev/).
 
-To get a local copy of the code, clone it using git:
-
-```
-git clone https://github.com/SafdarJamal/vite-template-react.git
-cd vite-template-react
-```
-
-Make it your own:
-
-```
-rm -rf .git && git init && npm init
-git add .
-git commit -m "Initial commit"
-```
-
 Install dependencies:
 
 ```
-npm i
+npm install
 ```
 
 Now, you can start a local web server by running:
 
 ```
-npm start
+npm run dev
 ```
 
-And then open http://localhost:3000 to view it in the browser.
+Open the link to view it in the browser.
 
 #### Available Scripts
 
