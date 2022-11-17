@@ -51,6 +51,18 @@ export const locations = [
     ],
     layers: [
       {
+        group: "l1",
+        name: "Local",
+        path: "/l1/sula/l1_sula_local.tif",
+        cmap: "ylorbr",
+      },
+      {
+        group: "l1",
+        name: "Global",
+        path: "/l1/sula/l1_sula_global.tif",
+        cmap: "ylorbr",
+      },
+      {
         group: "l2",
         name: "Local - Extremo",
         path: "/l2/sula/l2_sula_local_extremo.tif",
