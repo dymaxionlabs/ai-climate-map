@@ -50,6 +50,11 @@ const buildTitilerProvider = (cogPath, cmap) => {
   });
 };
 
+const getColorToAlpha = (layer) => {
+  if (!layer.colorToAlpha) return;
+  return new Color(...layer.colorToAlpha);
+};
+
 function App() {
   const [basemapId, setBasemapId] = useState(0);
   const [locationId, setLocationId] = useState(0);
@@ -166,7 +171,7 @@ function App() {
         reversedLayers.map((layer) => (
           <ImageryLayer
             key={layer.path}
-            colorToAlpha={new Color(1, 1, 0.8, 1)}
+            colorToAlpha={getColorToAlpha(layer)}
             colorToAlphaThreshold={0.075}
             show={layer.active}
             alpha={layer.opacity / 100.0}
