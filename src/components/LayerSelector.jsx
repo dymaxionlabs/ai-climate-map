@@ -59,27 +59,29 @@ const LayerSelector = ({
         onChange={onBasemapChange}
       />
     )}
-    <ul>
-      {groups.map((group) => (
-        <li key={`${locationId}-${group.id}`}>
-          <span>{group.name}</span>
-          <ul>
-            {group.layers.map((layer) => (
-              <li key={`${locationId}-${layer.id}`}>
-                <LayerItem
-                  id={layer.id}
-                  name={layer.name}
-                  active={layer.active}
-                  opacity={layer.opacity}
-                  onToggle={onToggle}
-                  onOpacityChange={onOpacityChange}
-                />
-              </li>
-            ))}
-          </ul>
-        </li>
-      ))}
-    </ul>
+    <div className="list-container">
+      <ul>
+        {groups.map((group) => (
+          <li key={`${locationId}-${group.id}`}>
+            <span>{group.name}</span>
+            <ul>
+              {group.layers.map((layer) => (
+                <li key={`${locationId}-${layer.id}`}>
+                  <LayerItem
+                    id={layer.id}
+                    name={layer.name}
+                    active={layer.active}
+                    opacity={layer.opacity}
+                    onToggle={onToggle}
+                    onOpacityChange={onOpacityChange}
+                  />
+                </li>
+              ))}
+            </ul>
+          </li>
+        ))}
+      </ul>
+    </div>
   </MapControl>
 );
 
