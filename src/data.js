@@ -61,6 +61,16 @@ export const locations = [
         name: "GT",
         path: "/gt/l4/tegu_rgb.tif",
       },
+      {
+        group: "l4",
+        name: "Global",
+        path: "/l4/tegu/l4_tegu_global_rgb.tif",
+      },
+      {
+        group: "l4",
+        name: "Local",
+        path: "/l4/tegu/l4_tegu_local_rgb.tif",
+      },
     ],
   },
   {
@@ -149,6 +159,26 @@ export const locations = [
         group: "l4",
         name: "GT",
         path: "/gt/l4/sula_rgb.tif",
+      },
+      {
+        group: "l4",
+        name: "Global - Extreme",
+        path: "/l4/sula/l4_sula_global_extremo_rgb.tif",
+      },
+      {
+        group: "l4",
+        name: "Global - Moderate",
+        path: "/l4/sula/l4_sula_global_moderado_rgb.tif",
+      },
+      {
+        group: "l4",
+        name: "Local - Extreme",
+        path: "/l4/sula/l4_sula_local_extremo_rgb.tif",
+      },
+      {
+        group: "l4",
+        name: "Local - Moderate",
+        path: "/l4/sula/l4_sula_local_moderado_rgb.tif",
       },
     ],
   },
