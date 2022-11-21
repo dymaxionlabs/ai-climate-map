@@ -19,6 +19,16 @@ export const locations = [
         path: "/gt/l1/tegu_rgb.tif",
       },
       {
+        group: "l1",
+        name: "Local",
+        path: "/l1/tegu/local_rgb.tif",
+      },
+      {
+        group: "l1",
+        name: "Global",
+        path: "/l1/tegu/global_rgb.tif",
+      },
+      {
         group: "l2",
         name: "GT",
         path: "/gt/l2/tegu_rgb.tif",
