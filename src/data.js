@@ -12,21 +12,36 @@ export const locations = [
       { id: "l3", name: "Level 3: Landslides" },
       { id: "l4", name: "Level 4: Land use" },
     ],
+    legends: [
+      {
+        id: "l1-tegu",
+        type: "categorical",
+        title: "Informal Settlements",
+        levels: [
+          { value: "New", color: "#ffffd4" },
+          { value: "In Development", color: "#fe9929" },
+          { value: "Consolidated", color: "#993404" },
+        ],
+      },
+    ],
     layers: [
       {
         group: "l1",
         name: "GT",
         path: "/gt/l1/tegu_rgb.tif",
+        legend: "l1-tegu",
       },
       {
         group: "l1",
         name: "Local",
         path: "/l1/tegu/local_rgb.tif",
+        legend: "l1-tegu",
       },
       {
         group: "l1",
         name: "Global",
         path: "/l1/tegu/global_rgb.tif",
+        legend: "l1-tegu",
       },
       {
         group: "l2",

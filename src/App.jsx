@@ -12,6 +12,7 @@ import { useState, useMemo, useEffect } from "react";
 import MapControlGroup from "./components/MapControlGroup";
 import LocationSelect from "./components/LocationSelect";
 import LayerSelect from "./components/LayerSelect";
+import Legends from "./components/Legends";
 import "./App.css";
 
 import { locations } from "./data";
@@ -112,6 +113,13 @@ function App() {
     return newGroups;
   }, [location, layers]);
 
+  const legends = useMemo(() => {
+    const legendKeys = layers
+      .filter((layer) => layer.active)
+      .map((layer) => layer.legend);
+    return location.legends.filter((legend) => legendKeys.includes(legend.id));
+  }, [location, layers]);
+
   const handleLocationChange = (i) => setLocationId(Number(i));
 
   const handleBasemapChange = (i) => {
@@ -148,6 +156,7 @@ function App() {
       </MapControlGroup>
       {groups && groups.length > 0 && (
         <MapControlGroup bottom left>
+          {legends && legends.length > 0 && <Legends items={legends} />}
           <LayerSelect
             locationId={locationId}
             groups={groups}
@@ -160,7 +169,9 @@ function App() {
         </MapControlGroup>
       )}
       {/* Basemap */}
-      {basemaps && <ImageryLayer imageryProvider={basemaps[0].provider} />}
+      {basemaps && basemaps.length > 0 && (
+        <ImageryLayer imageryProvider={basemaps[0].provider} />
+      )}
       {basemaps &&
         basemaps
           .slice(1)
