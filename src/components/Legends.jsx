@@ -39,7 +39,7 @@ const ColorBlock = ({ value }) => (
 );
 
 const CategoricalLegend = ({ data }) => (
-  <div>
+  <div className="legend">
     <p className="title">{data.title}</p>
     <ul>
       {data.levels.map((level, i) => (
@@ -64,7 +64,7 @@ const GradientBlock = ({ stops }) => (
 );
 
 const GradientLegend = ({ data }) => (
-  <div>
+  <div className="legend">
     <p className="title">{data.title}</p>
     <div>
       <span>{data.start}</span>
@@ -76,13 +76,15 @@ const GradientLegend = ({ data }) => (
 
 const Legends = ({ items }) => (
   <MapControl className="legends">
-    {items.map((legend) =>
-      legend.type === "categorical" ? (
-        <CategoricalLegend data={legend} />
-      ) : (
-        <GradientLegend data={legend} />
-      )
-    )}
+    <div>
+      {items.map((legend) =>
+        legend.type === "categorical" ? (
+          <CategoricalLegend data={legend} />
+        ) : (
+          <GradientLegend data={legend} />
+        )
+      )}
+    </div>
   </MapControl>
 );
 

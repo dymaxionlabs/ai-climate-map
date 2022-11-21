@@ -43,21 +43,42 @@ const BasemapSelect = ({ items, value, onChange }) => (
   </select>
 );
 
+const CategoryFilter = ({ items, value, onChange }) => (
+  <select onChange={(e) => onChange(e.target.value)} value={value}>
+    <option value={0}>Show all</option>
+    {items.map((item, i) => (
+      <option key={i + 1} value={i}>
+        {item.name}
+      </option>
+    ))}
+  </select>
+);
+
 const LayerSelect = ({
   locationId,
   groups,
   basemaps,
   basemap,
+  categories,
+  categoryId,
+  onCategoryChange,
   onToggle,
   onOpacityChange,
   onBasemapChange,
 }) => (
   <MapControl className="layer-selector">
-    {basemaps && (
+    {basemaps && basemaps.length > 0 && (
       <BasemapSelect
         items={basemaps}
         value={basemap}
         onChange={onBasemapChange}
+      />
+    )}
+    {categories && categories.length > 0 && (
+      <CategoryFilter
+        value={categoryId}
+        items={categories}
+        onChange={onCategoryChange}
       />
     )}
     <div className="list-container">
@@ -67,7 +88,10 @@ const LayerSelect = ({
             <span>{group.name}</span>
             <ul>
               {group.layers.map((layer) => (
-                <li key={`${locationId}-${layer.id}`}>
+                <li
+                  key={`${locationId}-${layer.id}`}
+                  style={{ display: layer.visible ? "block" : "none" }}
+                >
                   <LayerItem
                     id={layer.id}
                     name={layer.name}

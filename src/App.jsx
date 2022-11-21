@@ -15,7 +15,7 @@ import LayerSelect from "./components/LayerSelect";
 import Legends from "./components/Legends";
 import "./App.css";
 
-import { locations } from "./data";
+import { locations, categories } from "./data";
 
 if (import.meta.env.VITE_APP_CESIUMION_TOKEN) {
   Ion.defaultAccessToken = import.meta.env.VITE_APP_CESIUMION_TOKEN;
@@ -63,8 +63,10 @@ function App() {
   const [activeByLayer, setActiveByLayer] = useState({});
   const [opacityByLayer, setOpacityByLayer] = useState({});
   const [flyToActivated, setFlyToActivated] = useState(true);
+  const [categoryId, setCategoryId] = useState(0);
 
   const location = useMemo(() => locations[locationId], [locationId]);
+  const category = useMemo(() => categories[categoryId], [categoryId]);
 
   const layerProviders = useMemo(
     () =>
@@ -77,6 +79,9 @@ function App() {
   const layers = useMemo(() => {
     const newLayers = location.layers.map((layer, i) => {
       const _id = `${locationId}-${i}`;
+      const visible =
+        !(layer.category && category.id !== "") ||
+        layer.category === category.id;
       // console.log("layers:", _id);
       return {
         ...layer,
@@ -84,11 +89,19 @@ function App() {
         active: activeByLayer[_id] || false,
         opacity: opacityByLayer[_id] || 100,
         provider: layerProviders[i],
+        visible,
       };
     });
     // console.log("Layers", newLayers);
     return newLayers;
-  }, [location, locationId, layerProviders, activeByLayer, opacityByLayer]);
+  }, [
+    location,
+    locationId,
+    category,
+    layerProviders,
+    activeByLayer,
+    opacityByLayer,
+  ]);
 
   // useEffect(() => console.log("activeByLayer", activeByLayer), [activeByLayer]);
 
@@ -137,6 +150,12 @@ function App() {
     setOpacityByLayer({ ...opacityByLayer, [`${locationId}-${id}`]: value });
   };
 
+  const handleCategoryChange = (i) => setCategoryId(i);
+
+  useEffect(() => {
+    console.log("category:", categories[categoryId]);
+  }, [categoryId]);
+
   return (
     <Viewer
       timeline={false}
@@ -163,6 +182,9 @@ function App() {
             groups={groups}
             basemaps={basemaps}
             basemap={basemapId}
+            categories={categories}
+            categoryId={categoryId}
+            onCategoryChange={handleCategoryChange}
             onToggle={handleLayerToggle}
             onOpacityChange={handleLayerOpacityChange}
             onBasemapChange={handleBasemapChange}
@@ -190,7 +212,7 @@ function App() {
             key={layer.path}
             colorToAlpha={getColorToAlpha(layer)}
             colorToAlphaThreshold={0.075}
-            show={layer.active}
+            show={layer.active && layer.visible}
             alpha={layer.opacity / 100.0}
             imageryProvider={layer.provider}
           />

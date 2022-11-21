@@ -52,7 +52,7 @@
 
 .layer-selector .name {
   display: inline-block;
-  width: 10em;
+  width: 14em;
 }
 
 .layer-selector .opacity-slider {
@@ -69,6 +69,15 @@
   list-style-type: none;
   margin: 0;
   padding: 0;
+}
+
+.legends > div {
+  overflow-y: auto;
+  max-height: 17em;
+}
+
+.legends .legend {
+  margin-bottom: 0.5em;
 }
 
 .legends ul {

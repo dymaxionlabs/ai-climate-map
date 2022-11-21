@@ -1,5 +1,10 @@
 import { Cartesian3 } from "cesium";
 
+export const categories = [
+  { id: "local", name: "Local (PlanetScope)" },
+  { id: "global", name: "Global (Sentinel-2)" },
+];
+
 export const locations = [
   {
     id: "honduras",
@@ -72,7 +77,7 @@ export const locations = [
     layers: [
       {
         group: "l1",
-        name: "GT",
+        name: "Ground Truth",
         path: "/gt/l1/tegu_rgb.tif",
         legend: "l1",
       },
@@ -81,16 +86,18 @@ export const locations = [
         name: "Local",
         path: "/l1/tegu/local_rgb.tif",
         legend: "l1",
+        category: "local",
       },
       {
         group: "l1",
         name: "Global",
         path: "/l1/tegu/global_rgb.tif",
         legend: "l1",
+        category: "global",
       },
       {
         group: "l2",
-        name: "GT",
+        name: "Ground Truth",
         path: "/gt/l2/tegu_rgb.tif",
         legend: "l2-gt",
       },
@@ -101,6 +108,7 @@ export const locations = [
         cmap: "blues",
         colorToAlpha: [1, 1, 1, 1],
         legend: "l2",
+        category: "local",
       },
       {
         group: "l2",
@@ -109,10 +117,11 @@ export const locations = [
         cmap: "blues",
         colorToAlpha: [1, 1, 1, 1],
         legend: "l2",
+        category: "global",
       },
       {
         group: "l3",
-        name: "GT",
+        name: "Ground Truth",
         path: "/gt/l3/tegu_rgb.tif",
         legend: "l3-gt",
       },
@@ -123,6 +132,7 @@ export const locations = [
         cmap: "reds",
         colorToAlpha: [1, 0.9, 0.9, 1],
         legend: "l3",
+        category: "local",
       },
       {
         group: "l3",
@@ -131,10 +141,11 @@ export const locations = [
         cmap: "reds",
         colorToAlpha: [1, 0.9, 0.9, 1],
         legend: "l3",
+        category: "global",
       },
       {
         group: "l4",
-        name: "GT",
+        name: "Ground Truth",
         path: "/gt/l4/tegu_rgb.tif",
         legend: "l4",
       },
@@ -143,12 +154,14 @@ export const locations = [
         name: "Global",
         path: "/l4/tegu/l4_tegu_global_rgb.tif",
         legend: "l4",
+        category: "global",
       },
       {
         group: "l4",
         name: "Local",
         path: "/l4/tegu/l4_tegu_local_rgb.tif",
         legend: "l4",
+        category: "local",
       },
     ],
   },
@@ -222,7 +235,7 @@ export const locations = [
     layers: [
       {
         group: "l1",
-        name: "GT",
+        name: "Ground Truth",
         path: "/gt/l1/sula_rgb.tif",
         legend: "l1-gt",
       },
@@ -233,6 +246,7 @@ export const locations = [
         cmap: "ylorbr",
         colorToAlpha: [1, 1, 0.95, 1],
         legend: "l1",
+        category: "local",
       },
       {
         group: "l1",
@@ -241,16 +255,17 @@ export const locations = [
         cmap: "ylorbr",
         colorToAlpha: [1, 1, 0.95, 1],
         legend: "l1",
+        category: "global",
       },
       {
         group: "l2",
-        name: "GT - Extreme",
+        name: "Ground Truth - Extreme",
         path: "/gt/l2/sula_extreme_rgb.tif",
         legend: "l2-gt",
       },
       {
         group: "l2",
-        name: "GT - Moderate",
+        name: "Ground Truth - Moderate",
         path: "/gt/l2/sula_moderate_rgb.tif",
         legend: "l2-gt",
       },
@@ -261,6 +276,7 @@ export const locations = [
         cmap: "blues",
         colorToAlpha: [0.9, 0.94, 0.98, 1],
         legend: "l2",
+        category: "local",
       },
       {
         group: "l2",
@@ -269,6 +285,7 @@ export const locations = [
         cmap: "blues",
         colorToAlpha: [0.9, 0.94, 0.98, 1],
         legend: "l2",
+        category: "local",
       },
       {
         group: "l2",
@@ -277,6 +294,7 @@ export const locations = [
         cmap: "blues",
         colorToAlpha: [0.9, 0.94, 0.98, 1],
         legend: "l2",
+        category: "global",
       },
       {
         group: "l2",
@@ -285,6 +303,7 @@ export const locations = [
         cmap: "blues",
         colorToAlpha: [0.9, 0.94, 0.98, 1],
         legend: "l2",
+        category: "global",
       },
       {
         group: "l3",
@@ -293,6 +312,7 @@ export const locations = [
         cmap: "reds",
         colorToAlpha: [1, 0.96, 0.94, 1],
         legend: "l3",
+        category: "local",
       },
       {
         group: "l3",
@@ -301,10 +321,11 @@ export const locations = [
         cmap: "reds",
         colorToAlpha: [1, 0.96, 0.94, 1],
         legend: "l3",
+        category: "global",
       },
       {
         group: "l4",
-        name: "GT",
+        name: "Ground Truth",
         path: "/gt/l4/sula_rgb.tif",
         legend: "l4",
       },
@@ -313,24 +334,28 @@ export const locations = [
         name: "Global - Extreme",
         path: "/l4/sula/l4_sula_global_extremo_rgb.tif",
         legend: "l4",
+        category: "global",
       },
       {
         group: "l4",
         name: "Global - Moderate",
         path: "/l4/sula/l4_sula_global_moderado_rgb.tif",
         legend: "l4",
+        category: "global",
       },
       {
         group: "l4",
         name: "Local - Extreme",
         path: "/l4/sula/l4_sula_local_extremo_rgb.tif",
         legend: "l4",
+        category: "local",
       },
       {
         group: "l4",
         name: "Local - Moderate",
         path: "/l4/sula/l4_sula_local_moderado_rgb.tif",
         legend: "l4",
+        category: "local",
       },
     ],
   },
