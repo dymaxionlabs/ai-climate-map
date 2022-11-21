@@ -64,3 +64,31 @@
   overflow-y: auto;
   padding-right: 1em
 }
+
+.layer-selector ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.legends ul {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+
+.legends .title {
+  margin: 0;
+  margin-bottom: 0.75em;
+  font-weight: bold;
+}
+
+.legends .color-block {
+  display: inline-block;
+  vertical-align: middle;
+  width: 16px;
+  height: 16px;
+  border: 1px solid #555;
+  background-color: white;
+  margin-right: 0.5em;
+}

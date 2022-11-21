@@ -108,6 +108,7 @@ export const locations = [
       { id: "l3", name: "Level 3: Landslides" },
       { id: "l4", name: "Level 4: Land use" },
     ],
+    legends: [],
     layers: [
       {
         group: "l1",

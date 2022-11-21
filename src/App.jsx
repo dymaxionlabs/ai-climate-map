@@ -114,6 +114,7 @@ function App() {
   }, [location, layers]);
 
   const legends = useMemo(() => {
+    if (!layers || !location) return [];
     const legendKeys = layers
       .filter((layer) => layer.active)
       .map((layer) => layer.legend);

@@ -1,11 +1,20 @@
 import MapControl from "./MapControl";
 
+const ColorBlock = ({ value }) => (
+  <div className="color-block" style={{ backgroundColor: value }}>
+    &nbsp;
+  </div>
+);
+
 const CategoricalLegend = ({ data }) => (
   <div>
-    <span>{data.title}</span>
+    <p className="title">{data.title}</p>
     <ul>
       {data.levels.map((level, i) => (
-        <li key={i}>{level.value}</li>
+        <li key={i}>
+          <ColorBlock value={level.color} />
+          {level.value}
+        </li>
       ))}
     </ul>
   </div>
