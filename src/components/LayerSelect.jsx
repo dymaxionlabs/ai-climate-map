@@ -27,6 +27,7 @@ const LayerItem = ({
         max="100"
         onChange={(e) => onOpacityChange(id, e.target.value)}
         value={opacity}
+        style={{ visibility: active ? "visible" : "hidden" }}
       />
     </div>
   );
