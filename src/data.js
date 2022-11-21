@@ -23,6 +23,14 @@ export const locations = [
           { value: "Consolidated", color: "#993404" },
         ],
       },
+      {
+        id: "l2",
+        type: "gradient",
+        title: "Floods Probability",
+        start: "0%",
+        end: "100%",
+        cmap: "blues",
+      },
     ],
     layers: [
       {
@@ -54,6 +62,7 @@ export const locations = [
         path: "/l2/tegu/l2_tegu_local.tif",
         cmap: "blues",
         colorToAlpha: [1, 1, 1, 1],
+        legend: "l2",
       },
       {
         group: "l2",
@@ -61,6 +70,7 @@ export const locations = [
         path: "/l2/tegu/l2_tegu_global.tif",
         cmap: "blues",
         colorToAlpha: [1, 1, 1, 1],
+        legend: "l2",
       },
       {
         group: "l3",

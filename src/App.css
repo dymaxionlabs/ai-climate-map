@@ -92,3 +92,12 @@
   background-color: white;
   margin-right: 0.5em;
 }
+
+.legends .gradient-block {
+  display: inline-block;
+  vertical-align: middle;
+  width: 100px;
+  height: 16px;
+  border: 1px solid #555;
+  background-color: white;
+}
