@@ -1,7 +1,7 @@
 import MapControl from "./MapControl";
 
 const LocationSelect = ({ items, value, onChange }) => (
-  <MapControl className="location-selector" top left>
+  <MapControl className="location-selector">
     <span>Select a known location to explore:</span>
     <select onChange={(e) => onChange(e.target.value)} value={value}>
       {items.map((item, i) => (

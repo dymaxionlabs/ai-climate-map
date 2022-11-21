@@ -51,7 +51,7 @@ const LayerSelect = ({
   onOpacityChange,
   onBasemapChange,
 }) => (
-  <MapControl className="layer-selector" left bottom>
+  <MapControl className="layer-selector">
     {basemaps && (
       <BasemapSelect
         items={basemaps}

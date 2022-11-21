@@ -1,18 +1,7 @@
 import classNames from "classnames";
 
-const MapControl = ({ children, top, right, bottom, left, className }) => (
-  <div
-    className={classNames(
-      className,
-      "map-control",
-      top && "top",
-      right && "right",
-      bottom && "bottom",
-      left && "left"
-    )}
-  >
-    {children}
-  </div>
+const MapControl = ({ children, className }) => (
+  <div className={classNames(className, "map-control")}>{children}</div>
 );
 
 export default MapControl;

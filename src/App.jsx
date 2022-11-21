@@ -9,6 +9,7 @@ import {
 } from "cesium";
 import { CameraFlyTo, ImageryLayer, Viewer } from "resium";
 import { useState, useMemo, useEffect } from "react";
+import MapControlGroup from "./components/MapControlGroup";
 import LocationSelect from "./components/LocationSelect";
 import LayerSelect from "./components/LayerSelect";
 import "./App.css";
@@ -138,21 +139,25 @@ function App() {
       terrainProvider={terrainProvider}
     >
       {/* Controls */}
-      <LocationSelect
-        items={locations}
-        value={locationId}
-        onChange={handleLocationChange}
-      />
-      {groups && groups.length > 0 && (
-        <LayerSelect
-          locationId={locationId}
-          groups={groups}
-          basemaps={basemaps}
-          basemap={basemapId}
-          onToggle={handleLayerToggle}
-          onOpacityChange={handleLayerOpacityChange}
-          onBasemapChange={handleBasemapChange}
+      <MapControlGroup top left>
+        <LocationSelect
+          items={locations}
+          value={locationId}
+          onChange={handleLocationChange}
         />
+      </MapControlGroup>
+      {groups && groups.length > 0 && (
+        <MapControlGroup bottom left>
+          <LayerSelect
+            locationId={locationId}
+            groups={groups}
+            basemaps={basemaps}
+            basemap={basemapId}
+            onToggle={handleLayerToggle}
+            onOpacityChange={handleLayerOpacityChange}
+            onBasemapChange={handleBasemapChange}
+          />
+        </MapControlGroup>
       )}
       {/* Basemap */}
       {basemaps && <ImageryLayer imageryProvider={basemaps[0].provider} />}

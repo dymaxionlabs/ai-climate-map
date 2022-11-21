@@ -4,8 +4,31 @@
   width: 100vw;
 }
 
-.map-control {
+.map-control-group {
   position: absolute;
+}
+
+.map-control-group.top {
+  top: 10px;
+}
+
+.map-control-group.left {
+  left: 10px;
+}
+
+.map-control-group.bottom {
+  bottom: 10px;
+}
+
+.map-control-group.left.bottom {
+  bottom: 40px;
+}
+
+.map-control-group.right {
+  right: 10px;
+}
+
+.map-control {
   border-radius: 10px;
   border: #444;
   font-family: sans-serif;
@@ -13,26 +36,6 @@
   background-color: rgba(38, 38, 38, 0.75);
   color: #fff;
   padding: 12px;
-}
-
-.map-control.top {
-  top: 10px;
-}
-
-.map-control.left {
-  left: 10px;
-}
-
-.map-control.bottom {
-  bottom: 10px;
-}
-
-.map-control.left.bottom {
-  bottom: 40px;
-}
-
-.map-control.right {
-  right: 10px;
 }
 
 .location-selector {
