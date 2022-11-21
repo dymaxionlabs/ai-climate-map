@@ -42,7 +42,7 @@ const BasemapSelect = ({ items, value, onChange }) => (
   </select>
 );
 
-const LayerSelector = ({
+const LayerSelect = ({
   locationId,
   groups,
   basemaps,
@@ -85,4 +85,4 @@ const LayerSelector = ({
   </MapControl>
 );
 
-export default LayerSelector;
+export default LayerSelect;

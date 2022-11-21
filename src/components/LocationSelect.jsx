@@ -1,6 +1,6 @@
 import MapControl from "./MapControl";
 
-const LocationSelector = ({ items, value, onChange }) => (
+const LocationSelect = ({ items, value, onChange }) => (
   <MapControl className="location-selector" top left>
     <span>Select a known location to explore:</span>
     <select onChange={(e) => onChange(e.target.value)} value={value}>
@@ -13,4 +13,4 @@ const LocationSelector = ({ items, value, onChange }) => (
   </MapControl>
 );
 
-export default LocationSelector;
+export default LocationSelect;

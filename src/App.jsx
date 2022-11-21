@@ -9,8 +9,8 @@ import {
 } from "cesium";
 import { CameraFlyTo, ImageryLayer, Viewer } from "resium";
 import { useState, useMemo, useEffect } from "react";
-import LocationSelector from "./components/LocationSelector";
-import LayerSelector from "./components/LayerSelector";
+import LocationSelect from "./components/LocationSelect";
+import LayerSelect from "./components/LayerSelect";
 import "./App.css";
 
 import { locations } from "./data";
@@ -138,13 +138,13 @@ function App() {
       terrainProvider={terrainProvider}
     >
       {/* Controls */}
-      <LocationSelector
+      <LocationSelect
         items={locations}
         value={locationId}
         onChange={handleLocationChange}
       />
       {groups && groups.length > 0 && (
-        <LayerSelector
+        <LayerSelect
           locationId={locationId}
           groups={groups}
           basemaps={basemaps}
