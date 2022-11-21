@@ -40,7 +40,7 @@ const ColorBlock = ({ value }) => (
 
 const CategoricalLegend = ({ data }) => (
   <div className="legend">
-    <p className="title">{data.title}</p>
+    <span className="title">{data.title}</span>
     <ul>
       {data.levels.map((level, i) => (
         <li key={i}>
@@ -65,7 +65,7 @@ const GradientBlock = ({ stops }) => (
 
 const GradientLegend = ({ data }) => (
   <div className="legend">
-    <p className="title">{data.title}</p>
+    <span className="title">{data.title}</span>
     <div>
       <span>{data.start}</span>
       <GradientBlock stops={legends[data.cmap]} />

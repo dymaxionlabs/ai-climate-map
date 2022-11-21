@@ -67,25 +67,27 @@ const LayerSelect = ({
   onBasemapChange,
 }) => (
   <MapControl className="layer-selector">
-    {basemaps && basemaps.length > 0 && (
-      <BasemapSelect
-        items={basemaps}
-        value={basemap}
-        onChange={onBasemapChange}
-      />
-    )}
-    {categories && categories.length > 0 && (
-      <CategoryFilter
-        value={categoryId}
-        items={categories}
-        onChange={onCategoryChange}
-      />
-    )}
+    <div className="selects">
+      {basemaps && basemaps.length > 0 && (
+        <BasemapSelect
+          items={basemaps}
+          value={basemap}
+          onChange={onBasemapChange}
+        />
+      )}
+      {categories && categories.length > 0 && (
+        <CategoryFilter
+          value={categoryId}
+          items={categories}
+          onChange={onCategoryChange}
+        />
+      )}
+    </div>
     <div className="list-container">
       <ul>
         {groups.map((group) => (
           <li key={`${locationId}-${group.id}`}>
-            <span>{group.name}</span>
+            <span className="group-name">{group.name}</span>
             <ul>
               {group.layers.map((layer) => (
                 <li
