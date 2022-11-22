@@ -45,9 +45,8 @@ const BasemapSelect = ({ items, value, onChange }) => (
 
 const CategoryFilter = ({ items, value, onChange }) => (
   <select onChange={(e) => onChange(e.target.value)} value={value}>
-    <option value={0}>Show all</option>
     {items.map((item, i) => (
-      <option key={i + 1} value={i}>
+      <option key={i} value={i}>
         {item.name}
       </option>
     ))}

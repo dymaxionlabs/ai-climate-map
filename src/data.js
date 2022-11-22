@@ -1,6 +1,7 @@
 import { Cartesian3 } from "cesium";
 
 export const categories = [
+  { id: "", name: "Show all" },
   { id: "local", name: "Only Local (PlanetScope)" },
   { id: "global", name: "Only Global (Sentinel-2)" },
 ];
