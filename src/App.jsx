@@ -76,32 +76,33 @@ function App() {
     [location]
   );
 
+  const allLayers = useMemo(
+    () =>
+      location.layers.map((layer, i) => ({
+        ...layer,
+        id: i,
+        provider: layerProviders[i],
+      })),
+    [location, layerProviders]
+  );
+
   const layers = useMemo(() => {
-    const newLayers = location.layers.map((layer, i) => {
-      const _id = `${locationId}-${i}`;
+    const newLayers = allLayers.map((layer) => {
+      const _id = `${locationId}-${layer.id}`;
       const visible =
         !(layer.category && category.id !== "") ||
         layer.category === category.id;
       // console.log("layers:", _id);
       return {
         ...layer,
-        id: i,
         active: activeByLayer[_id] || false,
         opacity: opacityByLayer[_id] || 100,
-        provider: layerProviders[i],
         visible,
       };
     });
     // console.log("Layers", newLayers);
     return newLayers;
-  }, [
-    location,
-    locationId,
-    category,
-    layerProviders,
-    activeByLayer,
-    opacityByLayer,
-  ]);
+  }, [allLayers, locationId, category, activeByLayer, opacityByLayer]);
 
   // useEffect(() => console.log("activeByLayer", activeByLayer), [activeByLayer]);
 
