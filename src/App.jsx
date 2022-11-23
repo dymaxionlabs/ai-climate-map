@@ -163,6 +163,8 @@ function App() {
       animation={false}
       baseLayerPicker={false}
       imageryProvider={false}
+      geocoder={false}
+      homeButton={false}
       shadows
       terrainShadows={ShadowMode.CAST_ONLY}
       terrainProvider={terrainProvider}
