@@ -176,7 +176,6 @@ function App() {
       </MapControlGroup>
       {groups && groups.length > 0 && (
         <MapControlGroup bottom left>
-          {legends && legends.length > 0 && <Legends items={legends} />}
           <LayerSelect
             locationId={locationId}
             groups={groups}
@@ -189,6 +188,11 @@ function App() {
             onOpacityChange={handleLayerOpacityChange}
             onBasemapChange={handleBasemapChange}
           />
+        </MapControlGroup>
+      )}
+      {legends && legends.length > 0 && (
+        <MapControlGroup bottom right>
+          <Legends items={legends} />
         </MapControlGroup>
       )}
       {/* Basemap */}

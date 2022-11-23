@@ -28,14 +28,18 @@
   right: 0;
 }
 
+.map-control-group.right.bottom {
+  bottom: 30px;
+}
+
 .map-control {
-  border-radius: 10px;
+  border-radius: 5px;
   border: #444;
   font-family: sans-serif;
   font-size: 1em;
   background-color: rgba(38, 38, 38, 0.75);
   color: #ccc;
-  padding: 12px;
+  padding: 8px;
   margin: 10px;
 }
 
