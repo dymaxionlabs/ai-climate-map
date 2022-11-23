@@ -16,7 +16,7 @@ export const locations = [
       { id: "l1", name: "Level 1: Informal Settlements" },
       { id: "l2", name: "Level 2: Flooded Areas" },
       { id: "l3", name: "Level 3: Landslides" },
-      { id: "l4", name: "Level 4: Land use" },
+      { id: "l4", name: "Level 4: Land Value" },
     ],
     legends: [
       {
@@ -60,7 +60,7 @@ export const locations = [
       {
         id: "l4",
         type: "categorical",
-        title: "Land Use",
+        title: "Land Value",
         levels: [
           { value: "Public Area", color: "#33a02c" },
           { value: "Commercial Area", color: "#e62f21" },
@@ -174,7 +174,7 @@ export const locations = [
       { id: "l1", name: "Level 1: Informal Settlements" },
       { id: "l2", name: "Level 2: Flooded Areas" },
       { id: "l3", name: "Level 3: Landslides" },
-      { id: "l4", name: "Level 4: Land use" },
+      { id: "l4", name: "Level 4: Land Value" },
     ],
     legends: [
       {
@@ -219,7 +219,7 @@ export const locations = [
       {
         id: "l4",
         type: "categorical",
-        title: "Land Use",
+        title: "Land Value",
         levels: [
           { value: "Commercial Area", color: "#d7191c" },
           { value: "DCN Area", color: "#040cef" },
