@@ -225,7 +225,7 @@ export const locations = [
           { value: "Commercial Area", color: "#d7191c" },
           { value: "DCN Area", color: "#040cef" },
           { value: "Educative Area", color: "#040cef" },
-          { value: "Industrial Area", color: "#741cd2" },
+          { value: "Agro-Industrial Area", color: "#741cd2" },
           { value: "Mixed Area (50-60)", color: "#ff7f00" },
           { value: "Reserve and Green Areas", color: "#33a02c" },
           { value: "Residential Area: High", color: "#f3e308" },
